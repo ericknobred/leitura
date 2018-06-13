@@ -17,27 +17,24 @@ export default class Post extends Component{
                       <div className="post-item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sollicitudin, lorem et imperdiet mattis, orci lorem euismod orci, vitae maximus dui libero et nulla. In sollicitudin mollis interdum. Curabitur imperdiet malesuada venenatis. Nulla dignissim ipsum rutrum, fringilla dolor vel, imperdiet nisi. Sed placerat felis ante, tempor consequat lectus dapibus at. Curabitur venenatis aliquam eros sit amet mattis. Mauris porta interdum ipsum, iaculis faucibus libero tempus sit amet. Nam a molestie nulla. Nullam ultricies pellentesque purus et ultricies. Etiam luctus tellus eu tellus tempor, vel mollis massa vestibulum. Morbi dictum pharetra diam, non placerat ligula consequat interdum. Etiam vitae maximus sapien. Etiam vitae venenatis enim. Mauris vehicula nulla sapien, nec euismod odio tristique volutpat. Suspendisse posuere libero sit amet arcu vestibulum vulputate. Vestibulum faucibus enim sodales, placerat nisi non, tempor metus.</div>
                     </div>
                     <div className="post-item-user">
-                      <span className='post-user-name'>by <b>Erick Nobre</b>.<br /><small className='post-date-created'>10 hours ago</small></span>
+                      <span className='post-user-name'>by <b>Erick Nobre</b><br /><small className='post-date-created'>10 hours ago</small></span>
                     </div>
                   </div>
                   <div className="post-item-controls">
-                  <div className="item-control">
-                      <Icons.FaStar className='btn-icon' />
-                      <span className='btn-text'>0 Score</span>
-                  </div>
                     <div className="item-control">
                       <button className="btn-post-control" type='button'>
                         <Icons.FaThumbsUp className='btn-icon btn-icon-mousein' />
                         <Icons.FaThumbsOUp className='btn-icon btn-icon-mouseout' />
-                        <span className='btn-text'>Vote UP</span>
                       </button>
                     </div>
                     <div className="item-control">
                       <button className="btn-post-control" type='button'>
                         <Icons.FaThumbsDown className='btn-icon btn-icon-mousein' />
                         <Icons.FaThumbsODown className='btn-icon btn-icon-mouseout' />
-                        <span className='btn-text'>Vote DOWN</span>
                       </button>
+                    </div>
+                    <div className="item-control">
+                        <span className='btn-text'>0 votes</span>
                     </div>
                     <div className="item-control">
                       <button className="btn-post-control" type='button'>

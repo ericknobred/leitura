@@ -19,22 +19,19 @@ export default class Comment extends Component {
                 </div>
               <div className="post-item-controls">
                 <div className="item-control">
-                    <Icons.FaStar className='btn-icon' />
-                    <span className='btn-text'>0 Score</span>
-                </div>
-                <div className="item-control">
                   <button className="btn-post-control" type='button'>
                     <Icons.FaThumbsUp className='btn-icon btn-icon-mousein' />
                     <Icons.FaThumbsOUp className='btn-icon btn-icon-mouseout' />
-                    <span className='btn-text'>Vote UP</span>
-                  </button>  
+                  </button>
                 </div>
                 <div className="item-control">
                   <button className="btn-post-control" type='button'>
                     <Icons.FaThumbsDown className='btn-icon btn-icon-mousein' />
                     <Icons.FaThumbsODown className='btn-icon btn-icon-mouseout' />
-                    <span className='btn-text'>Vote DOWN</span>
-                  </button>  
+                  </button>
+                </div>
+                <div className="item-control">
+                    <span className='btn-text'>0 votes</span>
                 </div>
               </div>
             </div>
