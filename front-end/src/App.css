@@ -119,8 +119,6 @@ svg {
 }
 .btn-text{
   color:#333;
-  position: relative;
-  top: 2px;
   font-size: 12px;
 }
 .new-post .middle{
@@ -372,7 +370,7 @@ svg {
 
 .dialogOverlay {
   background:rgba(0,0,0,0.6);
-  position:absolute;
+  position:fixed;
   right: 0px;  top: 0;  bottom: 0; left: 0px;
   margin: auto;
 }
@@ -381,9 +379,11 @@ svg {
   position: absolute;
   left: 50%;
   top: 50%;
+  z-index: 100;
 }
 
 .dialog{
+  z-index: 100;
   position: relative;
   left: -50%;
   transform: translateY(-50%);
