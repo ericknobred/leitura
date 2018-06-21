@@ -84,6 +84,19 @@ const postSuccessHandler = (data, dispatch) => {
     }
 }
 
+export const loadAllPosts = (sort) => {
+    return dispatch => {
+        API.getAllPost()
+        .then(posts => {
+            dispatch({ type: LOAD_POST_CATEGORY, posts: posts })
+            dispatch(sortPosts(sort))            
+        })
+        .catch(() => {
+            dispatch(addAlert(`Ocorreu um erro ao carregar os posts.`,'error'))
+        })
+    }
+}
+
 export const loadPostsByCategory = (category, sort) => {
     return dispatch => {
         if(!category){
@@ -102,7 +115,6 @@ export const loadPostsByCategory = (category, sort) => {
 }
 
 export const sortPosts = condition => {
-    console.dir(condition)
     let sort = condition
     switch (sort){
         case "newer":

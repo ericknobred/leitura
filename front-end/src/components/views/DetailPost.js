@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import PostForm from '../post/PostForm'
+import PostItem from '../post/PostItem'
 import NavTop from '../nav/NavTop'
 
-import { loadPostById,clearPostForm } from '../../actions/PostAction'
+import { loadPostById, clearPostForm } from '../../actions/PostAction'
 
-class EditPost extends Component {
+class DetailPost extends Component {
 
     componentDidMount(){
         this.props.loadPostById(this.props.postId)
@@ -23,8 +23,17 @@ class EditPost extends Component {
 
     goBack(){
         this.props.clearPostForm()
-        this.props.history.push("/"+this.props.postEntity.category)
+        this.props.history.go(-1)
     }
+
+    editPost(id){
+        this.props.history.push(`/edit/${id}`)
+    }
+
+    editComment(id){
+        this.props.history.push(`/editComment/${id}`)
+    }
+
 
     render() {
         return (
@@ -32,8 +41,10 @@ class EditPost extends Component {
                  <NavTop selected={this.props.postEntity.category} />
                  <div className="app-container">
                     <div className="container">
-                        <button className="button-back" onClick={() => this.goBack()}> Back</button>                          
-                        <PostForm />
+                        <button className="button-back" onClick={() => this.goBack()}> Back</button> 
+                        <div className="app-box">
+                            <PostItem post={this.props.postEntity} editPost={this.props.editPost} editComment={this.props.editComment}/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,4 +68,4 @@ let mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EditPost))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(DetailPost))

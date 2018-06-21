@@ -32,11 +32,17 @@ class PostItem extends Component{
         this.props.toggleCommentsBox(id)
     }
 
+    detailPost(id){
+        if(this.props.detailPost){
+            this.props.detailPost(id, this.props.post.category)
+        }
+    }
+
     render() {
         let { post, openedComments } = this.props
 
         return (
-            <div className="post-item">
+            <div className={this.props.detailPost ? "post-item pointer" : "post-item"}  onClick={() => this.detailPost(post.id)}>
                 <ButtonActionBar 
                     openDialogDelete={() => {this.openDialogDelete(post)}}  
                     edit={() => {this.editPost(post.id)}}  

@@ -27,6 +27,7 @@ class NavTop extends Component {
                     <div className="nav-menu">
                         <div className="container">
                         <div className="nav-items">
+                            <NavItem selected={!selected} category={{path:'',name:'home'}} />
                             { categories.map(category => <NavItem key={category.name} selected={category.name === selected} category={category} />)}
                         </div>
                         </div>

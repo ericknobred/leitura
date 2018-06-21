@@ -7,7 +7,7 @@ class NavItem extends Component {
     render() {
         let { category, selected } = this.props
         return (
-            <div><Link className={selected ? 'nav-item active' : 'nav-item'} to={category.path}>{category.name}</Link></div>
+            <div><Link className={selected ? 'nav-item active' : 'nav-item'} to={("/"+category.path)}>{category.name}</Link></div>
         )
     }
 }

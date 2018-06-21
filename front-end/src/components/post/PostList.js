@@ -3,20 +3,18 @@ import {connect} from 'react-redux';
 
 import PostItem from './PostItem'
 
-import {loadPostsByCategory, sortPosts} from '../../actions/PostAction'
+import {loadPostsByCategory, sortPosts, loadAllPosts} from '../../actions/PostAction'
 
 class PostList extends Component {
 
-  componentDidMount(){
-    if(this.props.categoryLoaded){
-        this.props.loadPostsByCategory(this.props.category, this.props.sort)
-    }
-  }
-  
   componentDidUpdate(prevProps){
     
     if(this.props.categoryLoaded !== prevProps.categoryLoaded || this.props.category !== prevProps.category){
-      this.props.loadPostsByCategory(this.props.category, this.props.sort)
+      if(this.props.category){
+        this.props.loadPostsByCategory(this.props.category, this.props.sort)
+      }else{
+        this.props.loadAllPosts(this.props.sort)
+      }      
     }
   }
 
@@ -33,11 +31,11 @@ class PostList extends Component {
           </select>
         <div className="app-box">  
           {(this.props.loaded && posts.length === 0) && 
-            (<p>Não existe nenhum post para carregar nesta categoria.</p>)
+            (<p>Não existe nenhum post para carregar.</p>)
           }
           {this.props.loaded && (
             posts
-            .map(item => (<PostItem key={item.id} post={item} editPost={this.props.editPost} editComment={this.props.editComment} />))
+            .map(item => (<PostItem detailPost={this.props.detailPost}  key={item.id} post={item} editPost={this.props.editPost} editComment={this.props.editComment} />))
           )}
         </div>
         </div>
@@ -57,6 +55,7 @@ var mapStateToProps = (state) => {
 var mapDispatchToProps = (dispatch) => {
   return {
     loadPostsByCategory: (category,sort) => {dispatch(loadPostsByCategory(category, sort))},
+    loadAllPosts: (sort) => {dispatch(loadAllPosts(sort))},
     sortPosts: (condition) => {dispatch(sortPosts(condition))}
   }
 }

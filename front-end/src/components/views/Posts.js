@@ -7,21 +7,18 @@ import NavTop from '../nav/NavTop'
 
 class Posts extends Component {
     
-    componentDidMount(){
-        let { categorySelected } = this.props
-        if(!categorySelected) {
-            this.props.history.push("/react")
-        }
-    }
-
     componentDidUpdate(prevProps) {
         let { categorySelected, categories } = this.props
        
-        if(this.props.loaded !== prevProps.loaded) {
+        if(this.props.loaded !== prevProps.loaded && categorySelected) {
             if (categories.filter(item => item.name === categorySelected).length === 0){
                 this.props.history.push("/PageNotFound")
             }
         }
+    }
+
+    detailPost(id, category){
+        this.props.history.push(`/${category}/${id}`)
     }
 
     editPost(id){
@@ -39,8 +36,8 @@ class Posts extends Component {
                 <NavTop selected={categorySelected} />
                 <div className="app-container">
                     <div className="container">
-                        <PostForm category={categorySelected} />
-                        <PostList category={categorySelected} editComment={(id) => this.editComment(id)} editPost={(id) => this.editPost(id)} />
+                        {categorySelected && <PostForm category={categorySelected} />}
+                        <PostList category={categorySelected} detailPost={(id, category) => this.detailPost(id,category)} editComment={(id) => this.editComment(id)} editPost={(id) => this.editPost(id)} />
                     </div>
                 </div>
             </div>

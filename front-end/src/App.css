@@ -121,6 +121,10 @@ svg {
   color:#333;
   font-size: 12px;
 }
+
+.pointer {
+  cursor: pointer;
+}
 .new-post .middle{
   display: flex;
   flex-wrap: wrap;
