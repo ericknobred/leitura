@@ -12,10 +12,10 @@ export default class Router extends Component {
             <div>
                 <Switch>
                     <Route path="/PageNotFound" component={NotFound} />
-                    <Route path="/:category/:postId" component={DetailPost} />
                     <Route path="/edit/:postId" component={EditPost} />
                     <Route path="/editComment/:commentId" component={EditComment} />
-                    <Route path="/:category?" component={Posts} />                    
+                    <Route path="/:category/:postId" component={DetailPost} />  
+                    <Route path="/:category?" component={Posts} />                  
                 </Switch>
             </div>
         )

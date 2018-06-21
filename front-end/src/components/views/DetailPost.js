@@ -4,12 +4,12 @@ import { withRouter } from 'react-router-dom'
 import PostItem from '../post/PostItem'
 import NavTop from '../nav/NavTop'
 
-import { loadPostById, clearPostForm } from '../../actions/PostAction'
+import { loadPostDetailById, clearPostForm } from '../../actions/PostAction'
 
 class DetailPost extends Component {
 
     componentDidMount(){
-        this.props.loadPostById(this.props.postId)
+        this.props.loadPostDetailById(this.props.postId)
     }
 
     componentDidUpdate(prevProps){
@@ -38,12 +38,12 @@ class DetailPost extends Component {
     render() {
         return (
             <div>
-                 <NavTop selected={this.props.postEntity.category} />
+                 <NavTop selected={this.props.postDetail.category} />
                  <div className="app-container">
                     <div className="container">
                         <button className="button-back" onClick={() => this.goBack()}> Back</button> 
                         <div className="app-box">
-                            <PostItem post={this.props.postEntity} editPost={this.props.editPost} editComment={this.props.editComment}/>
+                            <PostItem post={this.props.postDetail} editPost={(id) => this.editPost(id)} editComment={(id) => this.editComment(id)}/>
                         </div>
                     </div>
                 </div>
@@ -54,16 +54,16 @@ class DetailPost extends Component {
 
 let mapStateToProps = (state, ownProps) => {
     return {
+        postDetail: state.PostReducer.postDetail,
         postId: ownProps.match.params.postId,
         saved: state.PostReducer.saved,
-        postEntity: state.PostReducer.PostEntity,
         notFound: state.PostReducer.notFound
     }
 }
 
 let mapDispatchToProps = dispatch => {
     return {
-        loadPostById: (id) => dispatch(loadPostById(id)),
+        loadPostDetailById: (id) => dispatch(loadPostDetailById(id)),
         clearPostForm: () => dispatch(clearPostForm())
     }
 }

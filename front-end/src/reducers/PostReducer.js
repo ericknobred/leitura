@@ -11,7 +11,8 @@ import {
     TOGGLE_COMMENTS_BOX,
     INCREMENT_COMMENT,
     DECREMENT_COMMENT,
-    POST_NOT_FOUND
+    POST_NOT_FOUND,
+    LOAD_POST_DETAIL_BY_ID
 } from '../actions/Types'
 
 import {PostEntity} from '../entities'
@@ -24,7 +25,8 @@ const initialState = {
     sort: 'newer',
     saved: false,
     notFound: false,
-    openedComments: []
+    openedComments: [],
+    postDetail: PostEntity
 }
 
 export default (state = initialState, action) => {
@@ -86,6 +88,13 @@ export default (state = initialState, action) => {
                 saved: false
             }
         }
+
+        case LOAD_POST_DETAIL_BY_ID: {
+            return {
+                ...state,
+                postDetail: action.postDetail
+            }
+        }
         case CLEAR_POST_FORM: {
             return {
                 ...state,
@@ -98,7 +107,8 @@ export default (state = initialState, action) => {
         case UPDATE_SCORE : {
             return {
                 ...state,
-                Posts: state.Posts.map(item => item.id === action.post.id ? {...action.post } : item)
+                Posts: state.Posts.map(item => item.id === action.post.id ? {...action.post } : item),
+                postDetail: state.postDetail.id !== "" ? {...action.post} : state.postDetail
             }
         }       
         case TOGGLE_COMMENTS_BOX : {

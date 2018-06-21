@@ -42,12 +42,12 @@ class PostItem extends Component{
         let { post, openedComments } = this.props
 
         return (
-            <div className={this.props.detailPost ? "post-item pointer" : "post-item"}  onClick={() => this.detailPost(post.id)}>
+            <div className="post-item">
                 <ButtonActionBar 
                     openDialogDelete={() => {this.openDialogDelete(post)}}  
                     edit={() => {this.editPost(post.id)}}  
                 />
-                <div className="post-item-info">
+                <div className={this.props.detailPost ? "post-item-info pointer" : "post-item-info"}  onClick={() => this.detailPost(post.id)}>
                     <div className="post-item-body">
                         <div className="post-item-title">{post.title}</div>
                         <div className="post-item-text">{post.body}</div>

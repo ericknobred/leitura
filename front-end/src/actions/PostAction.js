@@ -12,7 +12,8 @@ import {
     TOGGLE_COMMENTS_BOX,
     INCREMENT_COMMENT,
     DECREMENT_COMMENT,
-    POST_NOT_FOUND
+    POST_NOT_FOUND,
+    LOAD_POST_DETAIL_BY_ID
 } from './Types'
 
 import * as API from '../LeituraApi'
@@ -166,6 +167,19 @@ export const loadPostById = id => {
                 dispatch({type: POST_NOT_FOUND})
             } else {
                 dispatch({type: LOAD_POST_BY_ID, PostEntity: data})
+            }
+        })
+    }
+}
+
+export const loadPostDetailById = id => {
+    return dispatch => {
+        API.getPostById(id)
+        .then(data => {
+            if(data.error){
+                dispatch({type: POST_NOT_FOUND})
+            } else {
+                dispatch({type: LOAD_POST_DETAIL_BY_ID, postDetail: data})
             }
         })
     }
